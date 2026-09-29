@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Birikim Okulları – 2026-2027 Veli Kılavuzları Sunum Portalı</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Mobil kaydırmayı ve çoklu sayfayı çözen Mozilla PDF motoru -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-
   <style>
     :root {
       --kademe-color: #16a34a;
@@ -32,13 +29,14 @@
       color: var(--dark);
     }
 
+    /* A4 belgeler için ideal genişlik (900px) */
     .deck-container {
-      max-width: 920px;
+      max-width: 900px;
       margin: 0 auto;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 16px;
-      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.07);
+      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -159,7 +157,7 @@
     .pill-btn {
       padding: 6px 14px;
       border-radius: 999px;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       font-weight: 700;
       border: 1.5px solid var(--border);
       background: #ffffff;
@@ -178,7 +176,7 @@
       background: var(--kademe-color);
       color: #ffffff;
       border-color: var(--kademe-color);
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
     }
 
     .viewer-toolbar {
@@ -208,7 +206,7 @@
     }
 
     .doc-name {
-      font-size: 0.92rem;
+      font-size: 0.95rem;
       font-weight: 800;
       color: #0f172a;
     }
@@ -223,7 +221,7 @@
       align-items: center;
       gap: 5px;
       padding: 7px 12px;
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       font-weight: 700;
       border-radius: 6px;
       text-decoration: none;
@@ -252,58 +250,20 @@
       opacity: 0.9;
     }
 
-    /* Mobilde parmakla akıcı kaydırmayı sağlayan özel viewport */
     .pdf-viewport {
       width: 100%;
-      height: 74vh;
+      height: 75vh;
       min-height: 520px;
-      background: #475569;
+      max-height: 820px;
+      background: #334155;
       position: relative;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      padding: 20px 12px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 18px;
     }
 
-    .pdf-page-wrapper {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background: #ffffff;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-      border-radius: 6px;
-      overflow: hidden;
-      max-width: 100%;
-    }
-
-    .pdf-page-canvas {
-      display: block;
-      max-width: 100%;
-      height: auto !important;
-    }
-
-    .page-num-badge {
-      font-size: 0.72rem;
-      color: #94a3b8;
-      padding: 5px 0;
-      background: #f8fafc;
+    .pdf-frame {
       width: 100%;
-      text-align: center;
-      border-top: 1px solid #e2e8f0;
-      font-weight: 700;
-    }
-
-    .pdf-loading, .pdf-error {
-      color: #ffffff;
-      font-weight: 600;
-      font-size: 0.95rem;
-      margin: auto;
-      text-align: center;
-      padding: 40px 20px;
+      height: 100%;
+      border: none;
+      display: block;
     }
 
     .mobile-support-bar {
@@ -327,27 +287,12 @@
       .kademe-nav {
         grid-template-columns: repeat(2, 1fr);
       }
-      .kademe-tab {
-        padding: 10px 6px;
-      }
       .pdf-viewport {
         height: 65vh;
         min-height: 420px;
-        padding: 14px 8px;
       }
       .mobile-support-bar {
         display: block;
-      }
-      .viewer-toolbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .toolbar-actions {
-        width: 100%;
-      }
-      .action-btn {
-        flex: 1;
-        justify-content: center;
       }
     }
   </style>
@@ -404,18 +349,16 @@
     </div>
   </div>
 
-  <!-- Sayfaların alt alta listeleneceği scroll edilebilir alan -->
-  <div id="pdfViewport" class="pdf-viewport"></div>
+  <div class="pdf-viewport">
+    <iframe id="pdfFrame" class="pdf-frame" src="" loading="lazy"></iframe>
+  </div>
 
   <div class="mobile-support-bar">
-    💡 Parmakla yukarı kaydırarak tüm sayfaları sırayla okuyabilirsiniz.
+    💡 Dokümanda rahat gezinmek için yukarıdaki <strong>Tam Ekran</strong> butonunu kullanabilirsiniz.
   </div>
 </div>
 
 <script>
-  // Mozilla PDF.js arka plan işleyicisi
-  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-
   const rehberVeritabani = {
     anaokulu: {
       renk: "#ea580c",
@@ -468,7 +411,6 @@
 
   let aktifKademe = "ilkokul";
   let aktifSinifIndex = 0;
-  let renderSiraNo = 0;
 
   function temaUygula(renk, bg) {
     document.documentElement.style.setProperty('--kademe-color', renk);
@@ -511,7 +453,7 @@
     pdfYukle(sinif);
   }
 
-  async function pdfYukle(sinif) {
+  function pdfYukle(sinif) {
     const titleEl = document.getElementById('activeDocTitle');
     titleEl.textContent = `${sinif.ad} Veli Kılavuzu`;
 
@@ -520,74 +462,19 @@
     btnNewTab.href = sinif.dosya;
     btnDownload.href = sinif.dosya;
 
-    const container = document.getElementById('pdfViewport');
-    container.scrollTop = 0;
-    container.innerHTML = '<div class="pdf-loading">Sayfalar hazırlanıyor, lütfen bekleyin...</div>';
+    const iframe = document.getElementById('pdfFrame');
+    
+    // Mobil kontrolü (iOS ve Android cihazlarda tüm sayfaların kaydırılabilmesi için)
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-    // Hızlı sınıf değişimlerinde eski render işlemlerini iptal etmek için sıra kontrolü
-    const suankiRender = ++renderSiraNo;
-
-    try {
-      const loadingTask = pdfjsLib.getDocument(sinif.dosya);
-      const pdf = await loadingTask.promise;
-
-      if (suankiRender !== renderSiraNo) return;
-
-      container.innerHTML = '';
-
-      // Tüm sayfaları sırayla oluşturup alt alta diziyoruz
-      for (let sayfaNo = 1; sayfaNo <= pdf.numPages; sayfaNo++) {
-        if (suankiRender !== renderSiraNo) return;
-
-        const page = await pdf.getPage(sayfaNo);
-        const unscaledViewport = page.getViewport({ scale: 1 });
-        
-        // Ekran genişliğine göre orantılı ölçekleme
-        const containerWidth = container.clientWidth || 800;
-        const hedefGenislik = Math.min(containerWidth - 28, 860);
-        const scale = hedefGenislik / unscaledViewport.width;
-        const viewport = page.getViewport({ scale: scale });
-
-        // Net görüntü (Retina ekranlar) için piksel çarpanı
-        const dpr = window.devicePixelRatio || 1;
-        const canvas = document.createElement('canvas');
-        canvas.className = 'pdf-page-canvas';
-        const context = canvas.getContext('2d');
-
-        canvas.width = Math.floor(viewport.width * dpr);
-        canvas.height = Math.floor(viewport.height * dpr);
-        canvas.style.width = `${Math.floor(viewport.width)}px`;
-        canvas.style.height = `${Math.floor(viewport.height)}px`;
-
-        const wrapper = document.createElement('div');
-        wrapper.className = 'pdf-page-wrapper';
-        wrapper.appendChild(canvas);
-
-        const badge = document.createElement('span');
-        badge.className = 'page-num-badge';
-        badge.textContent = `Sayfa ${sayfaNo} / ${pdf.numPages}`;
-        wrapper.appendChild(badge);
-
-        container.appendChild(wrapper);
-
-        const renderContext = {
-          canvasContext: context,
-          transform: dpr !== 1 ? [dpr, 0, 0, dpr, 0, 0] : null,
-          viewport: viewport
-        };
-
-        await page.render(renderContext).promise;
-      }
-    } catch (err) {
-      if (suankiRender === renderSiraNo) {
-        container.innerHTML = `
-          <div class="pdf-error">
-            <p>Belge yüklenirken bir hata oluştu.</p>
-            <a href="${sinif.dosya}" target="_blank" class="action-btn btn-solid" style="margin-top:10px;">Yeni Sekmede Aç</a>
-          </div>
-        `;
-      }
-      console.error(err);
+    if (isMobile && window.location.protocol.startsWith('http')) {
+      // Mobilde kilitlenmeyi önler ve parmakla aşağı kaydırmaya izin verir
+      const tamUrl = new URL(sinif.dosya, window.location.href).href;
+      iframe.src = `https://docs.google.com/viewer?embedded=true&url=${encodeURIComponent(tamUrl)}`;
+    } else {
+      // Bilgisayarda orijinal, hızlı ve tam orantılı (Fit) görünüm
+      const dosyaYolu = encodeURI(sinif.dosya);
+      iframe.src = `${dosyaYolu}#view=Fit&toolbar=1&navpanes=0`;
     }
   }
 
