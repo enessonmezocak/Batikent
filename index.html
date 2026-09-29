@@ -25,17 +25,18 @@
 
     body {
       background-color: var(--bg);
-      padding: 16px;
+      padding: 16px 12px;
       color: var(--dark);
     }
 
+    /* Genişlik 1240px'ten ideal okuma ölçüsü olan 920px'e düşürüldü */
     .deck-container {
-      max-width: 1240px;
+      max-width: 920px;
       margin: 0 auto;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 20px;
-      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.07);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -43,39 +44,39 @@
 
     .deck-header {
       background: #0f172a;
-      padding: 16px 24px;
+      padding: 14px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 10px;
       border-bottom: 3px solid var(--kademe-color);
       transition: border-color 0.3s ease;
     }
 
     .brand-title {
       color: #ffffff;
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 800;
       letter-spacing: -0.3px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .brand-tag {
       background: #e11d48;
       color: #ffffff;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 700;
-      padding: 4px 8px;
-      border-radius: 6px;
+      padding: 3px 7px;
+      border-radius: 5px;
       text-transform: uppercase;
     }
 
     .period-indicator {
       color: #94a3b8;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 600;
     }
 
@@ -87,23 +88,23 @@
     }
 
     .kademe-tab {
-      padding: 14px 12px;
+      padding: 12px 8px;
       border: none;
       background: transparent;
-      font-size: 0.92rem;
+      font-size: 0.88rem;
       font-weight: 700;
       color: #64748b;
       cursor: pointer;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 3px;
+      gap: 2px;
       transition: all 0.2s ease;
       position: relative;
     }
 
     .kademe-tab span.small {
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       font-weight: 500;
       opacity: 0.8;
     }
@@ -130,17 +131,17 @@
 
     .class-selector-bar {
       background: #f8fafc;
-      padding: 12px 24px;
+      padding: 10px 18px;
       border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       overflow-x: auto;
       scrollbar-width: thin;
     }
 
     .class-bar-title {
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 800;
       text-transform: uppercase;
       color: #64748b;
@@ -149,14 +150,14 @@
 
     .class-pills {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       flex-wrap: nowrap;
     }
 
     .pill-btn {
-      padding: 8px 16px;
+      padding: 6px 14px;
       border-radius: 999px;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 700;
       border: 1.5px solid var(--border);
       background: #ffffff;
@@ -175,54 +176,54 @@
       background: var(--kademe-color);
       color: #ffffff;
       border-color: var(--kademe-color);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
     }
 
     .viewer-toolbar {
-      padding: 12px 24px;
+      padding: 10px 18px;
       background: #ffffff;
       border-bottom: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 10px;
     }
 
     .current-doc-info {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .doc-badge {
-      padding: 5px 12px;
-      border-radius: 8px;
-      font-size: 0.78rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.74rem;
       font-weight: 800;
       background: var(--kademe-bg);
       color: var(--kademe-color);
     }
 
     .doc-name {
-      font-size: 1rem;
+      font-size: 0.92rem;
       font-weight: 800;
       color: #0f172a;
     }
 
     .toolbar-actions {
       display: flex;
-      gap: 8px;
+      gap: 6px;
     }
 
     .action-btn {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 8px 14px;
-      font-size: 0.82rem;
+      gap: 5px;
+      padding: 7px 12px;
+      font-size: 0.78rem;
       font-weight: 700;
-      border-radius: 8px;
+      border-radius: 6px;
       text-decoration: none;
       transition: all 0.2s;
       cursor: pointer;
@@ -249,10 +250,13 @@
       opacity: 0.9;
     }
 
+    /* PDF alanı ekran boyuna göre dengeli orantılandı */
     .pdf-viewport {
       width: 100%;
-      height: 760px;
-      background: #334155;
+      height: 72vh;
+      min-height: 540px;
+      max-height: 800px;
+      background: #475569;
       position: relative;
     }
 
@@ -265,24 +269,46 @@
 
     .mobile-support-bar {
       display: none;
-      padding: 12px 16px;
+      padding: 10px 14px;
       background: #eff6ff;
       border-top: 1px solid #bfdbfe;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       color: #1e40af;
       text-align: center;
       font-weight: 600;
     }
 
+    /* Mobil Düzenlemeleri */
     @media (max-width: 768px) {
+      body {
+        padding: 6px;
+      }
+      .deck-container {
+        border-radius: 12px;
+      }
       .kademe-nav {
         grid-template-columns: repeat(2, 1fr);
       }
+      .kademe-tab {
+        padding: 10px 6px;
+      }
       .pdf-viewport {
-        height: 520px;
+        height: 60vh;
+        min-height: 420px;
       }
       .mobile-support-bar {
         display: block;
+      }
+      .viewer-toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .toolbar-actions {
+        width: 100%;
+      }
+      .action-btn {
+        flex: 1;
+        justify-content: center;
       }
     }
   </style>
@@ -344,12 +370,11 @@
   </div>
 
   <div class="mobile-support-bar">
-    💡 Dokümanda rahat gezinmek için yukarıdaki <strong>Tam Ekran</strong> butonunu kullanabilirsiniz.
+    💡 Telefonda daha rahat okumak için <strong>Tam Ekran</strong> butonunu kullanabilirsiniz.
   </div>
 </div>
 
 <script>
-  // GitHub'a yüklediğin gerçek dosya adları ile eşleştirilmiş veri tabanı
   const rehberVeritabani = {
     anaokulu: {
       renk: "#ea580c",
@@ -448,9 +473,9 @@
     const titleEl = document.getElementById('activeDocTitle');
     titleEl.textContent = `${sinif.ad} Veli Kılavuzu`;
 
-    // Tarayıcının boşluk ve Türkçe karakterleri doğru okuması için encodeURIComponent kullanıyoruz
     const dosyaYolu = encodeURI(sinif.dosya);
-    const pdfUrl = `${dosyaYolu}#view=FitH&toolbar=1&navpanes=0`;
+    // FitH yerine Fit kullanılarak sayfanın orantılı şekilde tam oturması sağlandı
+    const pdfUrl = `${dosyaYolu}#view=Fit&toolbar=1&navpanes=0`;
 
     const iframe = document.getElementById('pdfFrame');
     iframe.src = pdfUrl;
