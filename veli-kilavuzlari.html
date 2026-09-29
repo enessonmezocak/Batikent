@@ -29,7 +29,6 @@
       color: var(--dark);
     }
 
-    /* Yatay Geniş Sunum Taşıyıcısı */
     .deck-container {
       max-width: 1240px;
       margin: 0 auto;
@@ -42,7 +41,6 @@
       flex-direction: column;
     }
 
-    /* Üst Konsol Başlığı */
     .deck-header {
       background: #0f172a;
       padding: 16px 24px;
@@ -81,7 +79,6 @@
       font-weight: 600;
     }
 
-    /* Yatay Kademe Seçim Sekmeleri (Navigasyon 1) */
     .kademe-nav {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -131,7 +128,6 @@
       background: var(--kademe-color);
     }
 
-    /* Yatay Sınıf Seçim Çubuğu (Navigasyon 2) */
     .class-selector-bar {
       background: #f8fafc;
       padding: 12px 24px;
@@ -182,7 +178,6 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
     }
 
-    /* Belge Üst Araç Çubuğu (Aksiyonlar) */
     .viewer-toolbar {
       padding: 12px 24px;
       background: #ffffff;
@@ -254,7 +249,6 @@
       opacity: 0.9;
     }
 
-    /* Gömülü PDF Alanı */
     .pdf-viewport {
       width: 100%;
       height: 760px;
@@ -269,7 +263,6 @@
       display: block;
     }
 
-    /* Mobil Uyumlu Uyarı / Destek Kutusu */
     .mobile-support-bar {
       display: none;
       padding: 12px 16px;
@@ -297,7 +290,6 @@
 <body>
 
 <div class="deck-container">
-  <!-- Üst Başlık -->
   <div class="deck-header">
     <div class="brand-title">
       <span>BİRİKİM OKULLARI</span>
@@ -308,7 +300,6 @@
     </div>
   </div>
 
-  <!-- Yatay Kademe Sekmeleri (Anaokulu, İlkokul, Ortaokul, Lise) -->
   <nav class="kademe-nav">
     <button class="kademe-tab" onclick="kademeDegistir('anaokulu')" data-kademe="anaokulu">
       <span>🎨 Anaokulu</span>
@@ -328,13 +319,11 @@
     </button>
   </nav>
 
-  <!-- Yatay Sınıf Seçim Çubuğu -->
   <div class="class-selector-bar">
     <span class="class-bar-title">Sınıf Seçiniz:</span>
     <div id="pillsContainer" class="class-pills"></div>
   </div>
 
-  <!-- PDF Önizleme Araç Çubuğu -->
   <div class="viewer-toolbar">
     <div class="current-doc-info">
       <span id="activeBadge" class="doc-badge">İLKOKUL</span>
@@ -344,13 +333,12 @@
       <a id="btnNewTab" href="#" target="_blank" class="action-btn btn-outline" title="Ayrı sekmede tam sayfa aç">
         ⛶ Tam Ekran
       </a>
-      <a id="btnDownload" href="#" download class="action-btn btn-solid" title="Orijinal PDF'i Bilgisayara/Telefona İndir">
+      <a id="btnDownload" href="#" download class="action-btn btn-solid" title="Orijinal PDF'i İndir">
         📥 PDF İndir
       </a>
     </div>
   </div>
 
-  <!-- Birebir PDF Görüntüleyici -->
   <div class="pdf-viewport">
     <iframe id="pdfFrame" class="pdf-frame" src="" loading="lazy"></iframe>
   </div>
@@ -361,7 +349,7 @@
 </div>
 
 <script>
-  // Tüm Kılavuzların Eksiksiz Listesi (PDF Dosya Yolları ile)
+  // GitHub'a yüklediğin gerçek dosya adları ile eşleştirilmiş veri tabanı
   const rehberVeritabani = {
     anaokulu: {
       renk: "#ea580c",
@@ -369,9 +357,9 @@
       donem: "Hayata Dokunma Dönemi (Anaokulu)",
       badge: "ANAOKULU",
       siniflar: [
-        { ad: "3 Yaş", dosya: "pdf/3-yas.pdf", yedek: "3 YAŞ VELİ KLAVUZU.pdf" },
-        { ad: "4 Yaş", dosya: "pdf/4-yas.pdf", yedek: "4 YAŞ VELİ KLAVUZU.pdf" },
-        { ad: "5 Yaş", dosya: "pdf/5-yas.pdf", yedek: "5 YAŞ VELİ KLAVUZU.pdf" }
+        { ad: "3 Yaş", dosya: "pdf/3 YAŞ VELİ KLAVUZU.pdf" },
+        { ad: "4 Yaş", dosya: "pdf/4 YAŞ VELİ KLAVUZU.pdf" },
+        { ad: "5 Yaş", dosya: "pdf/5 YAŞ VELİ KLAVUZU.pdf" }
       ]
     },
     ilkokul: {
@@ -380,10 +368,10 @@
       donem: "Ortak Dil Oluşturma Dönemi (İlkokul)",
       badge: "İLKOKUL",
       siniflar: [
-        { ad: "1. Sınıf", dosya: "pdf/1-sinif.pdf", yedek: "1. SINIF VELİ KLAVUZU.pdf" },
-        { ad: "2. Sınıf", dosya: "pdf/2-sinif.pdf", yedek: "2. SINIF VELİ KLAVUZU.pdf" },
-        { ad: "3. Sınıf", dosya: "pdf/3-sinif.pdf", yedek: "3. SINIF VELİ KLAVUZU.pdf" },
-        { ad: "4. Sınıf", dosya: "pdf/4-sinif.pdf", yedek: "4. SINIF VELİ KLAVUZU.pdf" }
+        { ad: "1. Sınıf", dosya: "pdf/1. SINIF VELİ KLAVUZU.pdf" },
+        { ad: "2. Sınıf", dosya: "pdf/2. SINIF VELİ KLAVUZU.pdf" },
+        { ad: "3. Sınıf", dosya: "pdf/3. SINIF VELİ KLAVUZU.pdf" },
+        { ad: "4. Sınıf", dosya: "pdf/4. SINIF VELİ KLAVUZU.pdf" }
       ]
     },
     ortaokul: {
@@ -392,10 +380,10 @@
       donem: "Düşünme - Duyuş Becerileri Dönemi (Ortaokul)",
       badge: "ORTAOKUL",
       siniflar: [
-        { ad: "5. Sınıf", dosya: "pdf/5-sinif.pdf", yedek: "5. SINIF VELİ KLAVUZU.pdf" },
-        { ad: "6. Sınıf", dosya: "pdf/6-sinif.pdf", yedek: "6. SINIF VELİ KLAVUZU.pdf" },
-        { ad: "7. Sınıf", dosya: "pdf/7-sinif.pdf", yedek: "7. SINIF VELİ KLAVUZU.pdf" },
-        { ad: "8. Sınıf", dosya: "pdf/8-sinif.pdf", yedek: "8. SINIF VELİ KLAVUZU.pdf" }
+        { ad: "5. Sınıf", dosya: "pdf/5. SINIF VELİ KLAVUZU.pdf" },
+        { ad: "6. Sınıf", dosya: "pdf/6. SINIF VELİ KLAVUZU.pdf" },
+        { ad: "7. Sınıf", dosya: "pdf/7. SINIF VELİ KLAVUZU.pdf" },
+        { ad: "8. Sınıf", dosya: "pdf/8. SINIF VELİ KLAVUZU.pdf" }
       ]
     },
     lise: {
@@ -404,10 +392,10 @@
       donem: "Üniversal Dönem (Lise)",
       badge: "LİSE",
       siniflar: [
-        { ad: "9. Sınıf", dosya: "pdf/9-sinif.pdf", yedek: "9. SINIF VELİ KLAVUZU.pdf" },
-        { ad: "10. Sınıf", dosya: "pdf/10-sinif.pdf", yedek: "10. SINIF VELİ KLAVUZU.pdf" },
-        { ad: "11. Sınıf", dosya: "pdf/11-sinif.pdf", yedek: "11. SINIF VELİ KLAVUZU.pdf" },
-        { ad: "12. Sınıf", dosya: "pdf/12-sinif.pdf", yedek: "12. SINIF VELİ KLAVUZU.pdf" }
+        { ad: "9. Sınıf", dosya: "pdf/9. SINIF VELİ KLAVUZU.pdf" },
+        { ad: "10. Sınıf", dosya: "pdf/10. SINIF VELİ KLAVUZU.pdf" },
+        { ad: "11. Sınıf", dosya: "pdf/11. SINIF VELİ KLAVUZU.pdf" },
+        { ad: "12. Sınıf", dosya: "pdf/12. SINIF VELİ KLAVUZU.pdf" }
       ]
     }
   };
@@ -424,7 +412,6 @@
     aktifKademe = kademeKey;
     aktifSinifIndex = 0;
 
-    // Tab stillerini güncelle
     document.querySelectorAll('.kademe-tab').forEach(btn => {
       btn.classList.toggle('active', btn.getAttribute('data-kademe') === kademeKey);
     });
@@ -434,7 +421,6 @@
     document.getElementById('periodLabel').textContent = kademeData.donem;
     document.getElementById('activeBadge').textContent = kademeData.badge;
 
-    // Yatay sınıf hap butonlarını oluştur
     const pillsContainer = document.getElementById('pillsContainer');
     pillsContainer.innerHTML = '';
 
@@ -462,13 +448,13 @@
     const titleEl = document.getElementById('activeDocTitle');
     titleEl.textContent = `${sinif.ad} Veli Kılavuzu`;
 
-    // PDF Yolunu belirle (Genişlik ve araç çubuğu parametreleriyle)
-    const pdfUrl = `${sinif.dosya}#view=FitH&toolbar=1&navpanes=0`;
+    // Tarayıcının boşluk ve Türkçe karakterleri doğru okuması için encodeURIComponent kullanıyoruz
+    const dosyaYolu = encodeURI(sinif.dosya);
+    const pdfUrl = `${dosyaYolu}#view=FitH&toolbar=1&navpanes=0`;
 
     const iframe = document.getElementById('pdfFrame');
     iframe.src = pdfUrl;
 
-    // Butonları güncelle
     const btnNewTab = document.getElementById('btnNewTab');
     const btnDownload = document.getElementById('btnDownload');
     
@@ -476,7 +462,6 @@
     btnDownload.href = sinif.dosya;
   }
 
-  // Sayfa ilk açıldığında İlkokul - 1. Sınıf ile başlat
   window.addEventListener('DOMContentLoaded', () => {
     kademeDegistir('ilkokul');
   });
