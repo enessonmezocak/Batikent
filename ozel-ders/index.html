@@ -42,25 +42,21 @@
       box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
     }
 
+    /* Üst Logo & Başlık */
     .header-box {
       text-align: center;
       margin-bottom: 22px;
     }
 
-    .badge-campus {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--primary-soft);
-      color: var(--primary);
-      font-size: 0.78rem;
-      font-weight: 800;
-      padding: 5px 14px;
-      border-radius: 999px;
-      margin-bottom: 8px;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      border: 1px solid #fee2e2;
+    .logo-wrap {
+      margin-bottom: 14px;
+    }
+
+    .school-logo {
+      width: 100%;
+      max-width: 250px;
+      height: auto;
+      display: inline-block;
     }
 
     .main-title {
@@ -76,6 +72,7 @@
       margin-top: 4px;
     }
 
+    /* Ders Seçim Alanı */
     .selector-group {
       margin-bottom: 20px;
     }
@@ -108,6 +105,7 @@
       box-shadow: 0 0 0 4px rgba(201, 21, 36, 0.1);
     }
 
+    /* Hızlı Seçim Butonları */
     .quick-tags {
       display: flex;
       flex-wrap: wrap;
@@ -138,6 +136,7 @@
       border-color: var(--dark);
     }
 
+    /* Seçilen Ders Bilgi Şeridi */
     .selected-banner {
       display: flex;
       justify-content: space-between;
@@ -152,6 +151,7 @@
       font-weight: 700;
     }
 
+    /* Paket Kartları (3 Paket Eşit Standartta) */
     .package-list {
       display: flex;
       flex-direction: column;
@@ -223,6 +223,7 @@
       box-shadow: 0 6px 16px rgba(201, 21, 36, 0.3);
     }
 
+    /* Alt Bilgilendirme */
     .footer-note {
       margin-top: 18px;
       padding-top: 14px;
@@ -245,6 +246,9 @@
         width: 100%;
         justify-content: center;
       }
+      .school-logo {
+        max-width: 200px;
+      }
     }
   </style>
 </head>
@@ -252,7 +256,10 @@
 
 <div class="widget-container">
   <div class="header-box">
-    <div class="badge-campus">🏛️ Birikim Okulları Batıkent Kampüsü</div>
+    <!-- Logoyu En Başa Yerleştiriyoruz -->
+    <div class="logo-wrap">
+      <img src="birikim-logo.png" alt="Birikim Okulları Batıkent Kampüsü" class="school-logo">
+    </div>
     <h1 class="main-title">Birebir Özel Ders Kayıt Sistemi</h1>
     <p class="sub-title">Dersinizi ve ders saati paketinizi seçerek doğrudan online kaydınızı tamamlayabilirsiniz.</p>
   </div>
